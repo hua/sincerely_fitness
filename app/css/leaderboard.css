@@ -11,13 +11,17 @@ body {
 }
 
 #outer {
-    width: 600px;
+    width: 1200px;
     margin: 0 auto;    
 }
 
 .player {
     cursor: pointer;
     padding: 5px;
+}
+
+.player-header {
+    font-size: 10px;
 }
 
 .player .name {

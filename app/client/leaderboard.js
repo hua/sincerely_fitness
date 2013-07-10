@@ -15,9 +15,24 @@
     };
 
     Template.leaderboard.events({
-        'click input.inc': function () {
-            Players.update(Session.get("selected_player"), {$inc: {score: 5}});
-        }
+        'click input.pushups': function () {
+            Players.update(Session.get("selected_player"), {$pushups: {score: 5}});
+        },
+        'click input.pullups': function () {
+            Players.update(Session.get("selected_player"), {$pullups: {score: 5}});
+        },
+        'click input.running': function () {
+            Players.update(Session.get("selected_player"), {$running: {score: 1}});
+        },
+        'click input.biking': function () {
+            Players.update(Session.get("selected_player"), {$biking: {score: 1}});
+        },
+        'click input.yoga': function () {
+            Players.update(Session.get("selected_player"), {$yoga: {score: 1}});
+        },
+        'click input.situps': function () {
+            Players.update(Session.get("selected_player"), {$situps: {score: 5}});
+        }       
     });
 
     Template.player.events({
