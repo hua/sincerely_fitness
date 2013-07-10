@@ -1,0 +1,57 @@
+<head>
+    <title>Leaderboard</title>
+</head>
+
+<body>
+    <div id="outer">
+        {{ loginButtons }}
+            {{#if currentUser}}
+            {{> leaderboard}}
+        {{/if}}
+    </div>
+</body>
+
+<template name="leaderboard">
+    <div class="leaderboard">
+          <div class="player player-header">
+            <span class="name">name</span>
+            <span class="score">pushups</span>
+            <span class="score">pullups</span>
+            <span class="score">running</span>
+            <span class="score">biking</span>
+            <span class="score">yoga</span>
+            <span class="score">situps</span>
+        </div>
+        {{#each players}}
+        {{> player}}
+        {{/each}}
+    </div>
+
+    {{#if selected_name}}
+    <div class="details">
+        <div class="name">{{selected_name}}</div>
+        <input type="button" class="pushups" value="Give 1 pushup"/>
+        <input type="button" class="pullups" value="Give 1 pullup"/>
+        <input type="button" class="running" value="Give 1 running"/>
+        <input type="button" class="biking" value="Give 1 biking"/>
+        <input type="button" class="yoga" value="Give 1 yoga"/>
+        <input type="button" class="situps" value="Give 1 situp"/>
+    </div>
+    {{/if}}
+
+    {{#unless selected_name}}
+    <div class="none">Click a player to select</div>
+    {{/unless}}
+</template>
+<template name="player">
+    <div class="player {{selected}}">
+        <span class="name">{{name}}</span>
+        <span class="score">{{pushups}}</span>
+        <span class="score">{{pullups}}</span>
+        <span class="score">{{running}}</span>
+        <span class="score">{{biking}}</span>
+        <span class="score">{{yoga}}</span>
+        <span class="score">{{situps}}</span>
+    </div>
+</template>
+
