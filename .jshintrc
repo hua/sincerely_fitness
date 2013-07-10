@@ -72,6 +72,7 @@
         "Random",
         "Session",
         "Players",
+        "Scores",
         "console",
         "jasmine",
         "process",

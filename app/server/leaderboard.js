@@ -22,14 +22,21 @@
                 "Bryan",
                 "Justin"];
             for (var i = 0; i < names.length; i += 1) {
+                /*jshint -W083 */
                 Players.insert({
-                    name: names[i],
-                    pushups: 0,
-                    pullups: 0,
-                    running: 0,
-                    biking: 0,
-                    yoga: 0,
-                    situps: 0,
+                  name: names[i]
+                }, function(err, player) {
+
+                  var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps' ];
+
+                  for(var i=0; i<types.length; i++) {
+                    Scores.insert({
+                      type: types[i],
+                      date: new Date(),
+                      player: player
+                    });
+                  }
+
                 });
             }
         }

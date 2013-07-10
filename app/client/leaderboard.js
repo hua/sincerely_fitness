@@ -2,7 +2,38 @@
     "use strict";
 
     Template.leaderboard.players = function () {
-        return Players.find({}, {sort: {score: -1, name: 1}});
+
+        // Get the current year
+        var year = new Date().getFullYear(); // 2013
+
+        // Show for given month
+        // Get the current month
+        var startingMonth = new Date().getMonth(); // Jan = 0
+        var endMonth = new Date().getMonth() + 1; // Feb = 1
+
+        // We have to get the date times of the months
+        var startingDate = new Date(year, startingMonth);
+        var endingDate = new Date(year, endMonth);
+
+        // For each player, get all the scores for the month
+        var players = [];
+        Players.find().forEach(function(player) {
+           // player = { name: 'Hua' } ... and so on ..
+           // get the scores from beginning of month
+           // to the end of the month
+
+           var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps' ];
+           for(var i=0; i<types.length; i++) {
+             var type = types[i];
+             player[type] = Scores.find({
+               player: player._id,
+               type: type, // pushups, pullups, ...
+               date: { $gte: startingDate, $lt: endingDate }
+             }).count();
+           }
+           players.push(player);
+        });
+        return players;
     };
 
     Template.leaderboard.selected_name = function () {
@@ -16,23 +47,47 @@
 
     Template.leaderboard.events({
         'click input.pushups': function () {
-            Players.update(Session.get("selected_player"), {$pushups: {score: 5}});
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'pushups',
+              date: new Date()
+            });
         },
         'click input.pullups': function () {
-            Players.update(Session.get("selected_player"), {$pullups: {score: 5}});
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'pullups',
+              date: new Date()
+            });
         },
         'click input.running': function () {
-            Players.update(Session.get("selected_player"), {$running: {score: 1}});
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'running',
+              date: new Date()
+            });
         },
         'click input.biking': function () {
-            Players.update(Session.get("selected_player"), {$biking: {score: 1}});
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'biking',
+              date: new Date()
+            });
         },
         'click input.yoga': function () {
-            Players.update(Session.get("selected_player"), {$yoga: {score: 1}});
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'yoga',
+              date: new Date()
+            });
         },
         'click input.situps': function () {
-            Players.update(Session.get("selected_player"), {$situps: {score: 5}});
-        }       
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'situps',
+              date: new Date()
+            });
+        }
     });
 
     Template.player.events({
