@@ -27,7 +27,7 @@
                   name: names[i]
                 }, function(err, player) {
 
-                  var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps' ];
+                  var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates' ];
 
                   for(var i=0; i<types.length; i++) {
                     Scores.insert({
