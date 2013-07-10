@@ -22,7 +22,7 @@
            // get the scores from beginning of month
            // to the end of the month
 
-           var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps' ];
+           var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates' ];
            for(var i=0; i<types.length; i++) {
              var type = types[i];
              player[type] = Scores.find({
