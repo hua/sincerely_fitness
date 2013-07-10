@@ -87,6 +87,13 @@
               type: 'situps',
               date: new Date()
             });
+        },
+        'click input.chocolates': function () {
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'chocolates',
+              date: new Date()
+            });
         }
     });
 
