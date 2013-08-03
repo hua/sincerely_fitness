@@ -20,14 +20,15 @@
                 "Matt",
                 "Paul",
                 "Bryan",
-                "Justin"];
+                "Justin",
+                "Kirsten"];
             for (var i = 0; i < names.length; i += 1) {
                 /*jshint -W083 */
                 Players.insert({
                   name: names[i]
                 }, function(err, player) {
 
-                  var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates' ];
+                  var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates', 'swimming' ];
 
                   for(var i=0; i<types.length; i++) {
                     Scores.insert({

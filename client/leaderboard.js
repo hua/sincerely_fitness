@@ -22,7 +22,7 @@
            // get the scores from beginning of month
            // to the end of the month
 
-           var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates' ];
+           var types = [ 'pushups', 'pullups', 'running', 'biking', 'yoga', 'situps', 'chocolates', 'swimming' ];
            for(var i=0; i<types.length; i++) {
              var type = types[i];
              player[type] = Scores.find({
@@ -94,6 +94,13 @@
               type: 'chocolates',
               date: new Date()
             });
+        },
+        'click input.swimming': function () {
+            Scores.insert({
+              player: Session.get("selected_player"),
+              type: 'swimming ',
+              date: new Date()
+            }); 
         }
     });
 
