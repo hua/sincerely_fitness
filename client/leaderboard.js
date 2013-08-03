@@ -98,9 +98,9 @@
         'click input.swimming': function () {
             Scores.insert({
               player: Session.get("selected_player"),
-              type: 'swimming ',
+              type: 'swimming',
               date: new Date()
-            }); 
+            });
         }
     });
 
